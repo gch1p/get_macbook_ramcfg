@@ -1,0 +1,5 @@
+USAGE
+	sudo inteltool -g | get_mbp101_ramcfg
+
+LICENSE
+	BSD-2c
