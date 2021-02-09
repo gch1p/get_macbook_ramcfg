@@ -40,7 +40,7 @@ def main():
     # reverse bit order
     ramcfg = int('{:04b}'.format(ramcfg)[::-1], 2)
 
-    if ramcfg > len(ramconfigs):
+    if ramcfg >= len(ramconfigs):
         print("unsupported memory configuration %d" % ramcfg)
     else:
         print(ramconfigs[ramcfg])
