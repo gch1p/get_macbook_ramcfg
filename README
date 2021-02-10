@@ -1,5 +1,9 @@
 USAGE
-	sudo inteltool -g | get_mbp101_ramcfg
+	sudo inteltool -g | get_macbook_ramcfg -m <MODEL>
+
+MODELS
+	mbp101 - MacBook Pro 10,1
+	mba52  - MacBook Air 5,2
 
 LICENSE
 	BSD-2c

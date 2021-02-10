@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+import sys
+import argparse
+
+
+ramconfigs = {
+    'mba52': (
+        '4b_hynix',
+        None,
+        '8g_hynix',
+        None,
+        '4g_samsung',
+        None,
+        '8g_samsung',
+        None,
+        None,
+        None,
+        None,
+        None,
+        '4g_elpida',
+        None,
+        '8g_elpida',
+    ),
+    'mbp101': (
+        '4g_hynix_1600s',
+        '1g_samsung_1600',
+        '4g_samsung_1600s',
+        '1g_hynix_1600',
+        '4g_elpida_1600s',
+        '2g_samsung_1600',
+        '2g_samsung_1333',
+        '2g_hynix_1600',
+        '4g_samsung_1600',
+        '4g_hynix_1600',
+        '2g_elpida_1600s',
+        '2g_elpida_1600',
+        '4g_elpida_1600',
+        '2g_samsung_1600s',
+        '2g_hynix_1600s'
+    )
+}
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-m', '--model',
+                        choices=list(ramconfigs.keys()),
+                        help='MacBook model',
+                        required=True)
+
+    args = parser.parse_args()
+
+    configs = ramconfigs[args.model]
+    
+    reg = None
+    for line in sys.stdin:
+        line = line.strip()
+        if not line.endswith('(GPIO_LVL3)'):
+            continue
+
+        reg = int(line.split(' ')[1], 16)
+        break
+
+    if reg is None:
+        raise Exceptions("failed to parse gpio registers")
+
+    # GPIO68..GPIO71
+    ramcfg = (reg >> 4) & 0xf
+
+    # reverse bit order
+    ramcfg = int('{:04b}'.format(ramcfg)[::-1], 2)
+
+    if ramcfg >= len(configs) or configs[ramcfg] is None:
+        print("unsupported memory configuration %d" % ramcfg)
+    else:
+        print("%s (RAMCFG=%01x)" % (configs[ramcfg], ramcfg))
+        
+
+if __name__ == '__main__':
+    main()
