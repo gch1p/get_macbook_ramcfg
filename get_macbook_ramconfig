@@ -22,7 +22,7 @@ ramconfigs = {
         '4g_elpida',
     ),
     'mba52': (
-        '4b_hynix',
+        '4g_hynix',
         None,
         '8g_hynix',
         None,
