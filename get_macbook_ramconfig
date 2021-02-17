@@ -4,6 +4,23 @@ import argparse
 
 
 ramconfigs = {
+    'mba42': (
+        '2b_hynix',
+        None,
+        '4g_hynix',
+        None,
+        '2g_samsung',
+        None,
+        '4g_samsung',
+        None,
+        '2g_micron',
+        None,
+        None,
+        None,
+        None,
+        None,
+        '4g_elpida',
+    ),
     'mba52': (
         '4b_hynix',
         None,
