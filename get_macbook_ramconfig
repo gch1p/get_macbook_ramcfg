@@ -23,7 +23,7 @@ ramconfigs = {
     ),
     'mba52': (
         '4g_hynix',
-        None,
+        '4g_micron',
         '8g_hynix',
         None,
         '4g_samsung',
